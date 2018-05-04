@@ -59,7 +59,7 @@ Client.on('message', (message, members) => {
             let receiver = message.mentions.users.first()
             var MP_embed = new Discord.RichEmbed()
                 .setColor('#efd404')
-                .addField(`Message de ${message.author.tag}`, `Message --> ${message.content.substr(4)}`)
+                .addField(`Message de ${message.author.tag}`, `${message.content.substr(4)}`)
                 .setFooter("THERolePlay Bot | Service d'administation")
                 .setTimestamp()
             receiver.send(MP_embed)
