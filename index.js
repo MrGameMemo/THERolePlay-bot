@@ -42,7 +42,7 @@ Client.on('message', (message, members) => {
         if (message.content === prefix + 'candidatures') {
             var help_embed = new Discord.RichEmbed()
                 .setColor('#333333')
-                .setDescription('Voici les deux candidatures disponibles pour ce serveur: \nPour le [staff](https://goo.gl/forms/JhydYecWVfJ1LzZA2) \nPour les [métiers] \n Pour le [gouvernement](http://the-rp-server.e-monsite.com/pages/gouv/)')
+                .setDescription('Voici les deux candidatures disponibles pour ce serveur: \nPour le [staff](https://goo.gl/forms/JhydYecWVfJ1LzZA2) \nPour les [métiers]( https://docs.google.com/forms/d/1CswoyBr2ZZYeyDyifZ36uRudq8_sHsSo0fESzLRGI-c/edit?usp=drivesdk) \n Pour le gouvernement se référé au métiers (provisoire)')
             message.channel.send(help_embed)
                 .then(message => console.log(`Sent message: Candidatures`))
                 .catch(console.error)
@@ -52,7 +52,18 @@ Client.on('message', (message, members) => {
             message.guild.channels.get('424964584605220874').send(`${message.author} a besoin d'un membre du ${supportRole}`)
                 .then(message => console.log(`Sent message: ${message.content}`))
                 .catch(console.error)
-        } else {}
+        }
+        if (message.content.startsWith(prefix + 'MP')) {
+            message.delete()
+            if (!message.author.id === '375966230265462785' || !message.author.id === '318316245265154048') return message.author.send(":x: | Tu n'a pas accès à cette commande")
+            let receiver = message.mentions.users.first().author
+            var MP_embed = new Discord.RichEmbed()
+                .setColor('#efd404')
+                .addField(`Message de ${message.author.tag}`, `Message --> ${message.content.substr(4)}`)
+                .setFooter("THERolePlay Bot | Service d'administation")
+                .setTimestamp()
+            message.receiver.send(MP_embed)
+        }
     } else {
         let member = message.author.username;
         message.channel.send(`:x: | Le bot est en cours de préparation ${message.author} tu ne peux pas l'utiliser`)
