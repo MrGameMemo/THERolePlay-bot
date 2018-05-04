@@ -60,7 +60,7 @@ Client.on('message', (message, members) => {
             let content = message.content.split(' ').slice(2);
             var MP_embed = new Discord.RichEmbed()
                 .setColor('#efd404')
-                .addField(`Message de ${message.author.tag}`, `${content}}`)
+                .addField(`Message de ${message.author.tag}`, `${content}`)
                 .setFooter("THERolePlay Bot | Service d'administation")
                 .setTimestamp()
             receiver.send(MP_embed)
