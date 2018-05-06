@@ -82,6 +82,15 @@ Client.on('message', (message, members) => {
                 .setColor('#ffff')
                 .setDescription("Pour m'inviter sur ton serveur, [clique ici](https://discordapp.com/oauth2/authorize?client_id=424720833043496971&scope=bot&permissions=1010007255)")
             message.channel.send(help_embed)
+        }
+        if (message.content === prefix + 'ping') {
+            message.channel.send(`pong \`${Date.now() - message.createdTimestamp} ms\``)
+        }
+        if (message.content.startsWith(prefix + 'report')) {
+            message.delete()
+            let content = message.content.substr(8);
+            message.guild.channels.get('432512830483464192').send(`${message.author} fait un report car: ${content}`)
+            message.channel.send(`:white_check_mark: | Le report à bien été efféctué, le staff s'en occupera dès que possible.`)
         } else {}
     } else {
         let member = message.author.username;
