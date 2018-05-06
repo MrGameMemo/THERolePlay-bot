@@ -110,6 +110,10 @@ Client.on('message', (message, members) => {
             let content = message.content.substr(5);
             let member = message.mentions.users.first();
             member.send(`Message de ${sender}: \nContenu --> ${content} \n \n \`Si cette commande est spammée n'hésitez pas à prévenir le staff \``)
+        }
+        if (message.content === prefix + 'support') {
+            let supportRole = message.guild.roles.find('name', 'Support');
+            message.guild.channels.get('424964584605220874').send(`${message.author} a besoin d'un membre du ${supportRole}`)
         } else {}
     } else {
         let member = message.author.username;
