@@ -103,6 +103,13 @@ Client.on('message', (message, members) => {
                 .setColor('#ffff')
                 .setDescription('Pour aller sur notre site web, [clique ici]( https://the-rp-server.e-monsite.com/)')
             message.channel.send(help_embed)
+        }
+        if (message.content.startsWith(prefix + 'sms')) {
+            message.delete()
+            let sender = message.author.username;
+            let content = message.content.substr(5);
+            let member = message.mentions.users.first();
+            member.send(`Message de ${sender}: \nContenu --> ${content} \n \n \`Si cette commande est spammée n'hésitez pas à prévenir le staff \``)
         } else {}
     } else {
         let member = message.author.username;
