@@ -70,6 +70,18 @@ Client.on('message', (message, members) => {
                 .setColor('#ffff')
                 .setDescription("Pour contacter le fondateur: \nMr Game: <@318316245265154048> ou pour le chef développeur \ntransiSciences: <@375966230265462785>")
             message.channel.send(help_embed)
+        }
+        if (message.content === prefix + 'info') {
+            var help_embed = new Discord.RichEmbed()
+                .setColor('#ffff')
+                .setDescription("J'ai été développé par transiSciences#6105 \nEt suis administré et organisé par MrGame#9298. \nPour plus d'informations sur les commandes que je propose, faites +help")
+            message.channel.send(help_embed)
+        }
+        if (message.content === prefix + 'invite') {
+            var help_embed = new Discord.RichEmbed()
+                .setColor('#ffff')
+                .setDescription("Pour m'inviter sur ton serveur, [clique ici](https://discordapp.com/oauth2/authorize?client_id=424720833043496971&scope=bot&permissions=1010007255)")
+            message.channel.send(help_embed)
         } else {}
     } else {
         let member = message.author.username;
