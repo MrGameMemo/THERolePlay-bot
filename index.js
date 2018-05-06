@@ -91,6 +91,18 @@ Client.on('message', (message, members) => {
             let content = message.content.substr(8);
             message.guild.channels.get('432512830483464192').send(`${message.author} fait un report car: ${content}`)
             message.channel.send(`:white_check_mark: | Le report à bien été efféctué, le staff s'en occupera dès que possible.`)
+        }
+        if (message.content === prefix + 'serv') {
+            var serv_embed = new Discord.RichEmbed()
+                .setColor('#ffff')
+                .setDescription("Pour rejoindre mon serveur, [c'est par là](https://discord.io/the-rpds)")
+            message.channel.send(serv_embed)
+        }
+        if (message.content === prefix + 'site-web') {
+            var help_embed = new Discord.RichEmbed()
+                .setColor('#ffff')
+                .setDescription('Pour aller sur notre site web, [clique ici]( https://the-rp-server.e-monsite.com/)')
+            message.channel.send(help_embed)
         } else {}
     } else {
         let member = message.author.username;
