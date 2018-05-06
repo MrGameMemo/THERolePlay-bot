@@ -30,27 +30,12 @@ Client.on('message', (message, members) => {
     if (!message.content.startsWith(prefix)) return;
     if (message.member.roles.some(r => ["Béta testeur"].includes(r.name))) {
         let splitMessage = message.content.split(' ');
-        if (message.content === prefix + 'help') {
-            var help_embed = new Discord.RichEmbed()
-                .setColor('#ffff')
-                .setDescription(`Tu as demandé d'avoir des informations me concernant, les voici: \n\n  **Commandes RP:** \n+Candidatures \n+`)
-            message.author.send(help_embed)
-                .then(message => console.log(`Sent message: Help`))
-                .catch(console.error)
-            sendValid(message, "Les commandes utilisables vous ont été envoyées en MP. :envelope_with_arrow:")
-        }
         if (message.content === prefix + 'candidatures') {
             var help_embed = new Discord.RichEmbed()
                 .setColor('#333333')
                 .setDescription('Voici les deux candidatures disponibles pour ce serveur: \nPour le [staff](https://goo.gl/forms/JhydYecWVfJ1LzZA2) \nPour les [métiers]( https://docs.google.com/forms/d/1CswoyBr2ZZYeyDyifZ36uRudq8_sHsSo0fESzLRGI-c/edit?usp=drivesdk) \n Pour le gouvernement se référé au métiers (provisoire)')
             message.channel.send(help_embed)
                 .then(message => console.log(`Sent message: Candidatures`))
-                .catch(console.error)
-        }
-        if (message.content === prefix + 'support') {
-            let supportRole = message.guild.roles.find('name', 'Support');
-            message.guild.channels.get('424964584605220874').send(`${message.author} a besoin d'un membre du ${supportRole}`)
-                .then(message => console.log(`Sent message: ${message.content}`))
                 .catch(console.error)
         }
         if (message.content.startsWith(prefix + 'MP')) {
@@ -114,9 +99,32 @@ Client.on('message', (message, members) => {
         if (message.content === prefix + 'support') {
             let supportRole = message.guild.roles.find('name', 'Support');
             message.guild.channels.get('424964584605220874').send(`${message.author} a besoin d'un membre du ${supportRole}`)
+            message.member.addRole('425367442202689547')
         }
         if (message.content === prefix + 'version') {
-            message.channel.send('Je suis en version: ' + '**' + settings.version + '**')
+            message.channel.send('Je suis en version: ' + '**' + version + '**')
+        }
+        if (message.content === prefix + 'help') {
+            var help_embed = new Discord.RichEmbed()
+                .setColor('#ffff')
+                .setTitle(`Les commandes disponibles du bot ${Client.user.username}`)
+                .setDescription(`Le prefix est: ` + prefix)
+                .setThumbnail(`${Client.user.avatarURL}`)
+                .addBlankField(true)
+                .addField(":book: utiles", "=candidatures => Te permet d'accéder aux candidatures du serveur\n=support => Te met un rôle et mentionne le staff\n=invite => Te permet d'inviter le bot sur ton serveur\n=version => Te donne ma version\n=serv => Te donne l'invitation du serveur\n=contact => Te permet d'avoir les informations de contact du bot\n=report => Te permet de reporter un joueur\n=invite => Te permet d'inviter le bot sur ton serveur'")
+                .addBlankField(true)
+                .addField("🙂 FUN", "=id => Te permet de connaître ton identifiant\n=list => Te permet de savoir sur quel serveur je suis\n=user Te permet d'avoir des informations sur un utilisateur usage: =user ou =user@User1234")
+                .addBlankField(true)
+                .addField("🔒 Moderation", "=ban => Te permet de bannir un utilisateur en cas de besoin\n=kick => Te permet d'expulser un membre gênant\n=mute => Te permet de mute quelqu'un d'un channel\n=unmute => Te permet de le unmute...")
+                .addBlankField(true)
+                .addField('⚙️ VCS', "=vcs => Te permet d'envoyer des messages inter-serveurs nécessite un channel vcs\nrègles vcs => Te permet de conaître les différentes règles de mon vcs")
+                .addBlankField(true)
+                .addField("📎 Report", "=bug => Te permet de reporter un bug au développeur\n=fautes d'orthographes => Te permet d'indiquer qu'il y a une faute d'orthographe au développeur du bot")
+                .addBlankField(true)
+                .setFooter(Client.user.username)
+                .setTimestamp()
+            message.author.send(help_embed)
+            sendValid(message, "Les commandes utilisables vous ont été envoyées en MP. :envelope_with_arrow:")
         } else {}
     } else {
         let member = message.author.username;
