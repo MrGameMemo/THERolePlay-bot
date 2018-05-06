@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Client = new Discord.Client();
 const prefix = '+';
 const name = 'THE RolePlay Bot';
-const version = 'Béta 9.8.9';
+const version = 'Béta 9.9.9';
 const lang = 'fr';
 
 function sendError(message, description) {
@@ -99,7 +99,9 @@ Client.on('message', (message, members) => {
         if (message.content === prefix + 'support') {
             let supportRole = message.guild.roles.find('name', 'Support');
             message.guild.channels.get('424964584605220874').send(`${message.author} a besoin d'un membre du ${supportRole}`)
-            message.member.addRole('425367442202689547')
+            message.member.addRole('425367442202689547').catch((err) => {
+                console.error(err)
+            })
         }
         if (message.content === prefix + 'version') {
             message.channel.send('Je suis en version: ' + '**' + version + '**')
