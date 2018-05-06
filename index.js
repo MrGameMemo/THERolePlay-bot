@@ -65,6 +65,12 @@ Client.on('message', (message, members) => {
                 .setTimestamp()
             receiver.send(MP_embed)
         }
+        if (message.content === prefix + 'contact') {
+            var help_embed = new Discord.RichEmbed()
+                .setColor('#ffff')
+                .setDescription("Pour contacter le fondateur: \nMr Game: <@318316245265154048> ou pour le chef développeur \ntransiSciences: <@375966230265462785>")
+            message.channel.send(help_embed)
+        } else {}
     } else {
         let member = message.author.username;
         message.channel.send(`:x: | Le bot est en cours de préparation ${message.author} tu ne peux pas l'utiliser`)
