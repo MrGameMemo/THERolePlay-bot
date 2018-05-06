@@ -57,7 +57,7 @@ Client.on('message', (message, members) => {
             message.delete()
             if (!message.author.id === '375966230265462785' || !message.author.id === '318316245265154048') return message.author.send(":x: | Tu n'a pas accès à cette commande")
             let receiver = message.mentions.users.first()
-            let content = message.content.split(' ').slice(2);
+            let content = message.content.substr(4);
             var MP_embed = new Discord.RichEmbed()
                 .setColor('#efd404')
                 .addField(`Message de ${message.author.tag}`, `${content}`)
