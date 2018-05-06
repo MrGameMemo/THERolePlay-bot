@@ -114,6 +114,9 @@ Client.on('message', (message, members) => {
         if (message.content === prefix + 'support') {
             let supportRole = message.guild.roles.find('name', 'Support');
             message.guild.channels.get('424964584605220874').send(`${message.author} a besoin d'un membre du ${supportRole}`)
+        }
+        if (message.content === prefix + 'version') {
+            message.channel.send('Je suis en version: ' + '**' + settings.version + '**')
         } else {}
     } else {
         let member = message.author.username;
