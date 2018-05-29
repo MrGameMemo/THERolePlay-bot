@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 const Client = new Discord.Client();
-const prefix = '+';
+var prefix = '+';
 const name = 'THE RolePlay Bot';
 const version = 'Béta 9.9.9';
 const lang = 'fr';
+
 
 function sendError(message, description) {
     var help_embed = new Discord.RichEmbed()
@@ -13,7 +14,7 @@ function sendError(message, description) {
 
 
 };
-
+//Fonction réagissant au message '+help' et envoi du help par MP
 function sendValid(message, description) {
     var help_embed = new Discord.RichEmbed()
         .setColor('#ffff')
@@ -21,19 +22,22 @@ function sendValid(message, description) {
     message.channel.send(help_embed)
 };
 
+//Confirmation au lancement du bot
 Client.on('ready', function() {
     console.log('Logged in as: ' + name + ' ' + version + ' ' + lang)
-    Client.user.setActivity('https://discord.io/the-rpds | +help ')
+    Client.user.setActivity('discord.io/the-rpds | +help ')
 })
 
+//Restrictions n'autorisant que les Bêta Testeurs à utiliser la version actuelle du bot.
 Client.on('message', (message, members) => {
     if (!message.content.startsWith(prefix)) return;
     if (message.member.roles.some(r => ["Béta testeur"].includes(r.name))) {
         let splitMessage = message.content.split(' ');
+        //Commande affichant les candidatures du serveur
         if (message.content === prefix + 'candidatures') {
             var help_embed = new Discord.RichEmbed()
                 .setColor('#333333')
-                .setDescription('Voici les deux candidatures disponibles pour ce serveur: \nPour le [staff](https://goo.gl/forms/JhydYecWVfJ1LzZA2) \nPour les [métiers]( https://docs.google.com/forms/d/1CswoyBr2ZZYeyDyifZ36uRudq8_sHsSo0fESzLRGI-c/edit?usp=drivesdk) \n Pour le gouvernement se référé au métiers (provisoire)')
+                .setDescription('Voici les deux candidatures disponibles pour ce serveur: \nPour le [staff](https://goo.gl/forms/JhydYecWVfJ1LzZA2) \nPour les [métiers]( https://goo.gl/forms/AERjRIHOuAXfCmzI2) \n Pour le gouvernement se référé au métiers (provisoire)')
             message.channel.send(help_embed)
                 .then(message => console.log(`Sent message: Candidatures`))
                 .catch(console.error)
@@ -106,11 +110,24 @@ Client.on('message', (message, members) => {
         if (message.content === prefix + 'version') {
             message.channel.send('Je suis en version: ' + '**' + version + '**')
         }
+        
+        if (message.content === prefix + 'prefix') {
+            if (!message.author.id === '375966230265462785' || !message.author.id === '318316245265154048')
+            prefix == (.+)$}
+            
+        if (message.content === prefix + 'prefixe') {
+            if (!message.author.id === '375966230265462785' || !message.author.id === '318316245265154048')
+            prefix == (.+)$ }
+            
+        if (message.content === prefix + 'préfixe') {
+            if (!message.author.id === '375966230265462785' || !message.author.id === '318316245265154048')
+            prefix == (.+)$
+        
         if (message.content === prefix + 'help') {
             var help_embed = new Discord.RichEmbed()
                 .setColor('#ffff')
                 .setTitle(`Les commandes disponibles du bot ${Client.user.username}`)
-                .setDescription(`Le prefix est: ` + prefix)
+                .setDescription(`Le préfixe est: ` + prefix)
                 .setThumbnail(`${Client.user.avatarURL}`)
                 .addBlankField(true)
                 .addField(":book: utiles", "+candidatures => Te permet d'accéder aux candidatures du serveur\n+support => Te met un rôle et mentionne le staff\n+invite => Te permet d'inviter le bot sur ton serveur\n+version => Te donne ma version\n+serv => Te donne l'invitation du serveur\n+ontact => Te permet d'avoir les informations de contact du bot\n+report => Te permet de reporter un joueur\n+invite => Te permet d'inviter le bot sur ton serveur\n+site-web => Te permet d'accéder à notre site web\n+sms => Te permet d'envoyer un sms à un utilisateur")
